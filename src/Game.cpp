@@ -1,9 +1,9 @@
 #include <iostream>
-#include <SDL2/SDL.h
+#include <SDL2/SDL.h>
 #include "Game.h"
 
 Game::Game() {
-  isRunning = false; // 
+  isRunning = false; // Start of compiler, needs to be set false
 
   std::cout << "game constructor called" << std::endl;
   
@@ -16,7 +16,7 @@ Game::~Game() {
 
 void Game::Initialize() {
   // Initialising
-  if (SDL_Init(SDL_INIT_EVERYTHIN) != 0) {
+  if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     std::cerr << "Error initialising SDL" << std::endl;
     return;
   }
@@ -40,18 +40,19 @@ void Game::Initialize() {
     return;
   }
 
-  isRunning = true;
+  isRunning = true; // End of initialising reverting back to true
 }
  
 void Game::ProcessInput() {
-  SDL_Event = sdlEvent;
+  // Handling key press events
+  SDL_Event sdlEvent;
   while (SDL_PollEvent(&sdlEvent)) {
     switch(sdlEvent.type) {
-      case SDL_QUIT:
+      case SDL_QUIT:         // SDL_QUIT is like when you click on 'X' it's when OS does that "QUIT" function
 	isRunning = false;
 	break;
       case SDL_KEYDOWN:
-	if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
+	if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) { // QUIT on ESC
 	  isRunning = false;
 	}
 	break;
@@ -64,10 +65,16 @@ void Game::Update() {
 }
 
 void Game::Render() {
+  SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Flags(SDL_Renderer*, RED, GREEN, BLUE, ALPHA(Transparency))
+  SDL_RenderClear(renderer);
+
+  // Render Objects
   
+  SDL_RenderPresent(renderer);
 }
 
 void Game::Run() {
+  // Main loop where all this code runs, this is in while loop because it needs to run indefinitely until we do the "ESC" key
   while (isRunning) {
     ProcessInput();
     Update();
@@ -76,6 +83,7 @@ void Game::Run() {
 }
 
 void Game::Destroy() {
+  // Destroy after quiting the program, we need it to avoid memory leaks
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
