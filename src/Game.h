@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_H // Header guards
+#define GAME_H //
 
 #include <SDL2/SDL.h>
 
@@ -10,14 +10,21 @@ class Game {
     SDL_Renderer* renderer;
   
   public:
+    // Constructor & Destructor 
     Game();
     ~Game();
+
+    // Loop
     void Initialize();
     void Run();
     void ProcessInput();
     void Update();
     void Render();
     void Destroy();
+
+    // Window variables for width/height
+    int windowWidth;
+    int windowHeight;
 };
 
-#endif
+#endif //
