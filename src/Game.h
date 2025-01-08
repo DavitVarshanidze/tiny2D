@@ -17,6 +17,7 @@ class Game {
     // Loop
     void Initialize();
     void Run();
+    void Setup();
     void ProcessInput();
     void Update();
     void Render();

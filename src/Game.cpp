@@ -53,11 +53,11 @@ void Game::ProcessInput() {
   SDL_Event sdlEvent;
   while (SDL_PollEvent(&sdlEvent)) {
     switch(sdlEvent.type) {
-      case SDL_QUIT:         // SDL_QUIT is like when you click on 'X' it's when OS does that "QUIT" function
+      case SDL_QUIT: // SDL_QUIT is like when you click on 'X' it's when OS does that "QUIT" function
 	isRunning = false;
 	break;
       case SDL_KEYDOWN:
-	if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) { // QUIT on ESC
+	if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
 	  isRunning = false;
 	}
 	break;
@@ -65,21 +65,28 @@ void Game::ProcessInput() {
   }
 }
 
+void Game::Setup() {
+  
+}
+
 void Game::Update() {
   
 }
 
 void Game::Render() {
-  SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Flags(SDL_Renderer*, RED, GREEN, BLUE, ALPHA(Transparency))
+  SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
   SDL_RenderClear(renderer);
 
-  // Render Objects
+  // Draw a rectangle
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_Rect player = { 10, 10, 20, 20 };
+  SDL_RenderFillRect(renderer, &player);
   
   SDL_RenderPresent(renderer);
 }
 
 void Game::Run() {
-  // Main loop where all this code runs, this is in while loop because it needs to run indefinitely until we do the "ESC" key
+  Setup();
   while (isRunning) {
     ProcessInput();
     Update();
