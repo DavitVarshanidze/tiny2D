@@ -5,7 +5,7 @@
 #include "Game.h"
 
 Game::Game() {
-  isRunning = false; // Start of compiler, needs to be set false
+  isRunning = false; // Start
 
   std::cout << "game constructor called" << std::endl;
   
@@ -49,15 +49,14 @@ void Game::Initialize() {
   
   SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
-  isRunning = true; // End of initialising reverting back to true, if everything works fine
+  isRunning = true; // End
 }
  
 void Game::ProcessInput() {
-  // Handling key press events
   SDL_Event sdlEvent;
   while (SDL_PollEvent(&sdlEvent)) {
     switch(sdlEvent.type) {
-      case SDL_QUIT: // SDL_QUIT is like when you click on 'X' it's when OS does that "QUIT" function
+      case SDL_QUIT:
 	isRunning = false;
 	break;
       case SDL_KEYDOWN:
@@ -90,7 +89,6 @@ void Game::Render() {
   SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
   SDL_RenderClear(renderer);
 
-  // IMG
   SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");
   SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
   SDL_FreeSurface(surface);
@@ -118,7 +116,6 @@ void Game::Run() {
 }
 
 void Game::Destroy() {
-  // Destroy after quiting the program, we need it to avoid memory leaks
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
