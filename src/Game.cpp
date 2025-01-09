@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <glm/glm.hpp>
 #include "Game.h"
 
 Game::Game() {
@@ -16,14 +17,14 @@ Game::~Game() {
 }
 
 void Game::Initialize() {
-  // Initialising
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     std::cerr << "Error initialising SDL" << std::endl;
     return;
   }
-  // Create Window
+  
   SDL_DisplayMode displayMode;
   SDL_GetCurrentDisplayMode(0, &displayMode);
+  
   windowWidth  = 800;
   windowHeight = 600;
   window = SDL_CreateWindow(
@@ -34,19 +35,21 @@ void Game::Initialize() {
 			windowHeight,
 			SDL_WINDOW_BORDERLESS
   );
+  
   if (!window) {
     std::cerr << "Error creating SDL window" << std::endl;
     return;
   }
-  // Create Renderer
+  
   renderer = SDL_CreateRenderer(window, -1, 0);
   if (!renderer) {
     std::cerr << "Error creating SDL renderer" << std::endl;
     return;
   }
+  
   SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
-  isRunning = true; // End of initialising reverting back to true
+  isRunning = true; // End of initialising reverting back to true, if everything works fine
 }
  
 void Game::ProcessInput() {
@@ -66,12 +69,17 @@ void Game::ProcessInput() {
   }
 }
 
+glm::vec2 playerPosition;
+glm::vec2 playerVelocity;
+
 void Game::Setup() {
-  
+  playerPosition = glm::vec2(10.0, 20.0);
+  playerVelocity = glm::vec2(1.0, 0.0);
 }
 
 void Game::Update() {
-  
+  playerPosition.x += playerVelocity.x;
+  playerPosition.y += playerVelocity.y;
 }
 
 void Game::Render() {
@@ -83,7 +91,13 @@ void Game::Render() {
   SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
   SDL_FreeSurface(surface);
 
-  SDL_Rect dstRect = { 10, 10, 32, 32 };
+  SDL_Rect dstRect = {
+    static_cast<int>(playerPosition.x),
+    static_cast<int>(playerPosition.y),    
+    32,
+    32
+  };
+  
   SDL_RenderCopy(renderer, texture, NULL, &dstRect);
   SDL_DestroyTexture(texture);
   

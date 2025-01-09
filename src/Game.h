@@ -1,7 +1,10 @@
-#ifndef GAME_H // Header guards
-#define GAME_H //
+#ifndef GAME_H
+#define GAME_H
 
 #include <SDL2/SDL.h>
+
+const int FPS = 30;
+const int MILLISECS_PER_FRAME = 1000 / 30;
 
 class Game {
   private:
@@ -28,4 +31,4 @@ class Game {
     int windowHeight;
 };
 
-#endif //
+#endif
