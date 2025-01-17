@@ -14,11 +14,9 @@ class Game {
     SDL_Renderer* renderer;
   
   public:
-    // Constructor & Destructor 
     Game();
     ~Game();
 
-    // Loop
     void Initialize();
     void Run();
     void Setup();
@@ -27,7 +25,6 @@ class Game {
     void Render();
     void Destroy();
 
-    // Window variables for width/height
     int windowWidth;
     int windowHeight;
 };
