@@ -1,3 +1,7 @@
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
 #include "Logger.h"
 
 void Logger::Log(const std::string& message) {

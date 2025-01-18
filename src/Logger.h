@@ -2,10 +2,6 @@
 #define LOGGER_H
 
 #include <string>
-#include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <sstream>
 
 class Logger {
     public:
