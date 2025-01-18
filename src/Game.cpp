@@ -2,23 +2,21 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <glm/glm.hpp>
+#include "Logger.h"
 #include "Game.h"
 
 Game::Game() {
   isRunning = false; // Start
-
-  std::cout << "game constructor called" << std::endl;
-  
+  Logger::Log("Game Constructor Called");
 }
 
 Game::~Game() {
-  std::cout << "game destructor called" << std::endl;
-  
+  Logger::Log("Game Destructor Called");
 }
 
 void Game::Initialize() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-    std::cerr << "Error initialising SDL" << std::endl;
+    Logger::Err("Error initialising SDL");
     return;
   }
   
@@ -37,13 +35,13 @@ void Game::Initialize() {
   );
   
   if (!window) {
-    std::cerr << "Error creating SDL window" << std::endl;
+    Logger::Err("Error creating SDL window");
     return;
   }
   
   renderer = SDL_CreateRenderer(window, -1, 0);
   if (!renderer) {
-    std::cerr << "Error creating SDL renderer" << std::endl;
+    Logger::Err("Error creating SDL renderer");
     return;
   }
   
