@@ -2,21 +2,21 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <glm/glm.hpp>
-#include "Logger.h"
+#include <spdlog/spdlog.h>
 #include "Game.h"
 
 Game::Game() {
   isRunning = false; // Start
-  Logger::Log("Game Constructor Called");
+  spdlog::info("Game Constructor Called");
 }
 
 Game::~Game() {
-  Logger::Log("Game Destructor Called");
+  spdlog::info("Game Destructor Called");
 }
 
 void Game::Initialize() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-    Logger::Err("Error initialising SDL");
+    spdlog::error("Error initialising SDL");
     return;
   }
   
@@ -26,22 +26,22 @@ void Game::Initialize() {
   windowWidth  = 800;
   windowHeight = 600;
   window = SDL_CreateWindow(
-			NULL,
+			"Tanks and Helicopters",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
 			windowWidth,
 			windowHeight,
-			SDL_WINDOW_BORDERLESS
+			0
   );
   
   if (!window) {
-    Logger::Err("Error creating SDL window");
+    spdlog::error("Error creating SDL window");
     return;
   }
   
   renderer = SDL_CreateRenderer(window, -1, 0);
   if (!renderer) {
-    Logger::Err("Error creating SDL renderer");
+    spdlog::error("Error creating SDL renderer");
     return;
   }
   
