@@ -30,7 +30,7 @@ void Game::Initialize()
   windowWidth = 800;
   windowHeight = 600;
   window = SDL_CreateWindow(
-      "Tanks and Helicopters",
+      "Tiny2D",
       SDL_WINDOWPOS_CENTERED,
       SDL_WINDOWPOS_CENTERED,
       windowWidth,
