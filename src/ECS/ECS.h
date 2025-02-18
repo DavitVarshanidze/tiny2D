@@ -1,8 +1,8 @@
 #ifndef ECS_H
 #define ECS_H
 
-#include <bitset>
 #include <vector>
+#include <bitset>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -35,8 +35,14 @@ class Entity {
 
     public:
         Entity(int id): id(id) {};
+        Entity(const Entity& entity) = default;
         int GetId() const;
-        //...
+       
+        Entity& operator =(const Entity& other) = default;
+        bool operator ==(const Entity& other) const { return id == other.id; }
+        bool operator !=(const Entity& other) const { return id != other.id; }
+        bool operator >(const Entity& other) const { return id > other.id; }
+        bool operator <(const Entity& other) const { return id < other.id; }
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +62,7 @@ class System {
         void AddEntityToSystem(Entity entity);
         void RemoveEntityFromSystem(Entity entity);
         std::vector<Entity> GetSystemEntities() const;
-        Signature& GetComponentSignature() const;
+        const Signature& GetComponentSignature() const;
 
         // Defines the component type that entities must have to be considered by the system
         template <typename TComponent> void RequireComponent();
