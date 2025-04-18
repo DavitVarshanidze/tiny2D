@@ -1,4 +1,4 @@
-# 🏌️‍♂️ Tiny2D
+# 🧩 Tiny2D
 
 This is a simple 2D game engine built using **SDL2**, **Lua**, and **C++**. It provides basic functionality for rendering 2D graphics, handling user input, and integrating Lua scripts for game logic. The engine is designed to be lightweight, modular, and easy to extend for your own game projects.
 
