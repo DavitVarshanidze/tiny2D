@@ -48,7 +48,7 @@ make
 
 ### Once compiled, run the engine with:
 ```bash
-./engine
+./tiny2d
 ```
 
 #### Contributing
