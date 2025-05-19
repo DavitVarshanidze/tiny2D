@@ -37,7 +37,7 @@ brew install lua
 
 ### Clone the repository:
 ```bash
-git clone https://github.com/davidvarshanidze/Tiny2D
+git clone https://github.com/DavitVarshanidze/Tiny2D
 cd Tiny2D
 ```
 
