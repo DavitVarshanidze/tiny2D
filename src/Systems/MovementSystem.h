@@ -23,9 +23,12 @@ class MovementSystem: public System {
         void OnCollision(CollisionEvent& event) {
             Entity a = event.a;
             Entity b = event.b;
+            Logger::Log("Collision event emitted: " + std::to_string(a.GetId()) + " and " + std::to_string(b.GetId()));
+        
             if (a.BelongsToGroup("enemies") && b.BelongsToGroup("obstacles")) {
                 OnEnemyHitsObstacle(a, b); // "a" is the enemy, "b" is the obstacle
             }
+            
             if (a.BelongsToGroup("obstacles") && b.BelongsToGroup("enemies")) {
                 OnEnemyHitsObstacle(b, a); // "b" is the enemy, "a" is the obstacle
             }
@@ -71,8 +74,8 @@ class MovementSystem: public System {
                     transform.position.y = transform.position.y > Game::mapHeight - paddingBottom ? Game::mapHeight - paddingBottom : transform.position.y;
                 }
 
-                // Check if entity is outside the map boundaries (with a 200 pixels forgiving culling margin)
-                int cullingMargin = 200;
+                // Check if entity is outside the map boundaries (with a 100 pixels forgiving culling margin)
+                int cullingMargin = 100;
                 
                 bool isEntityOutsideMap = (
                     transform.position.x < -cullingMargin ||
@@ -80,7 +83,7 @@ class MovementSystem: public System {
                     transform.position.y < -cullingMargin ||
                     transform.position.y > Game::mapHeight + cullingMargin
                 );
-
+                
                 // Kill all entities that move outside the map boundaries
                 if (isEntityOutsideMap && !entity.HasTag("player")) {
                     entity.Kill();

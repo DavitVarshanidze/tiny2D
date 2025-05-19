@@ -8,8 +8,8 @@ SRC_FILES = ./src/*.cpp \
 			./src/ECS/*.cpp \
 			./src/AssetStore/*.cpp \
 			./libs/imgui/*.cpp
-LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua5.3 
-OBJ_NAME = engine
+LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua
+OBJ_NAME = tiny2d
 
 build:
 	$(CC) $(COMPILER_FLAGS) $(LANG_STD) $(INCLUDE_PATH) $(SRC_FILES) $(LINKER_FLAGS) -o $(OBJ_NAME)

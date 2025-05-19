@@ -34,7 +34,7 @@ class RenderSystem: public System {
                     renderableEntity.transformComponent.position.y > camera.y + camera.h
                 );
 
-                // Cull sprites that are outside the camera viww (and are not fixed)
+                // Cull sprites that are outside the camera view (and are not fixed)
                 if (isOutsideCameraView && !renderableEntity.spriteComponent.isFixed) {
                     continue;
                 }
