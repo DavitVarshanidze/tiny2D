@@ -2,6 +2,8 @@
 
 This is a simple 2D game engine built using **SDL2**, **Lua**, and **C++**. It provides basic functionality for rendering 2D graphics, handling user input, and integrating Lua scripts for game logic. The engine is designed to be lightweight, modular, and easy to extend for your own game projects.
 
+![Game Screenshot/Image](/assets/images/screenshot.png)
+
 ## Features
 
 - **SDL2 Integration**: Utilizes SDL2 for window management, event handling, and graphics rendering.
